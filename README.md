@@ -1,2 +1,2 @@
-# Recipe-Page
-html practice
+# Techtonica Assignments
+All of my projects for Techtonica
