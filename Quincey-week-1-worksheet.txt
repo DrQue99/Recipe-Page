@@ -1,0 +1,23 @@
+
+1. How do you plan on exhibiting professionalism at Techtonica? What would be different in a full-time engineering job setting?
+    
+    I plan to dress well and professionally. I will practice being considerate of others and speaking clearly and without swearing.
+    I will avoid talking about politically sensitve subjects. I will consider how what I say affects whom I am speaking to before I speak.
+    
+
+2. What would you do if you just found out you are going to be an hour late tomorrow morning?
+3. What would you do if you realized that you only had time to finish most of your work by the due date of a group project?
+Knowing yourself, what are the most effective ways for you to learn and retain new information?
+What is growth mindset?
+Which operating system are you using right now? Name two other popular operating systems.
+Why do computers need operating systems?
+Explain what you would do if you felt stuck on a coding problem.
+Describe the ways you plan on meeting and staying connected with new people in tech this month.
+Describe some examples of effective body language and what is communicated when they are used well.
+Describe some examples of effective word choice and what is communicated when they are used well.
+How can you build trust in a team?
+How are the devices on the internet physically connected to each other?
+How is information physically transmitted from device to device?
+How does one device find another it’s trying to communicate with?
+What methods do devices on the internet use to communicate?
+How can we send data reliably even if the network is unreliable?
