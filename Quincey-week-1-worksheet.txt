@@ -1,23 +1,78 @@
 
 1. How do you plan on exhibiting professionalism at Techtonica? What would be different in a full-time engineering job setting?
     
-    I plan to dress well and professionally. I will practice being considerate of others and speaking clearly and without swearing.
-    I will avoid talking about politically sensitve subjects. I will consider how what I say affects whom I am speaking to before I speak.
+    Here are 5 commitments I've made to be professional at Techtonica:
     
-
+    I will dress well and professionally.
+    I will take care of myself and keep up with my hygiene. 
+    I will smile and greet everyone warmly.  
+    I will consider how what I say affects whom I am speaking to.
+    I will be on time and focused on my work during working hours.
+    
 2. What would you do if you just found out you are going to be an hour late tomorrow morning?
+
+    I will message/ping my managers on slack to let them know I will be late the moment I knew that I would be late.
+
 3. What would you do if you realized that you only had time to finish most of your work by the due date of a group project?
-Knowing yourself, what are the most effective ways for you to learn and retain new information?
-What is growth mindset?
-Which operating system are you using right now? Name two other popular operating systems.
-Why do computers need operating systems?
-Explain what you would do if you felt stuck on a coding problem.
-Describe the ways you plan on meeting and staying connected with new people in tech this month.
-Describe some examples of effective body language and what is communicated when they are used well.
-Describe some examples of effective word choice and what is communicated when they are used well.
-How can you build trust in a team?
-How are the devices on the internet physically connected to each other?
-How is information physically transmitted from device to device?
-How does one device find another it’s trying to communicate with?
-What methods do devices on the internet use to communicate?
-How can we send data reliably even if the network is unreliable?
+
+    I would let my managers know that I've fallen behind and may not finish by the deadline. Depending on the project I would ask for assistance or evaluate whether or not I could have done something differently that would have enabled me to finish on time or if the workload was too much and my manager had unrealistic expectations.
+
+4. Knowing yourself, what are the most effective ways for you to learn and retain new information?
+
+    I'm a first a visual learner and then secondly a tactile learner. So videos, graphs, illustrations, reading, writing, and learning through experience and experimenting are all methods I need to utilize really solidify concepts.  
+
+5. What is the growth mindset?
+
+    It's the self-perception that an individual has that upholds to the belief that they can improve their qualities such as intelligence and talents through hard work
+    and resilience.
+
+6. Which operating system are you using right now? Name two other popular operating systems.
+
+    I'm using OSX and Linux. Other popular OS's are Windows and Google Chrome OS.
+
+7. Why do computers need operating systems?
+
+    It the most important software that runs on the computer. It serves as a manager/navigator for all other software such as memory, other processes, 
+    and it interacts with the computer’s hardware.
+
+8. Explain what you would do if you felt stuck on a coding problem.
+
+    I would see if I could solve it on my own using google and searching for the errors I may be having. I would use websites such as W3 and StackOverflow. If after 20 minutes of working on the problem on my own and searching the internet I’m unable to resolve the problem I would think about the problem and how to articulate that to another software engineer. After I know how to present the problem I would also inform the individual of what I’ve tried so far and what I learned from it.
+
+9. Describe the ways you plan on meeting and staying connected with new people in tech this month.
+
+    I am going to attend the weekly women's JavaScript Study Group on Tuesday nights. I'm also going to spend a few hours a week connecting with people in tech through Twitter and LinkedIn. 
+
+10. Describe some examples of effective body language and what is communicated when they are used well.
+
+    Making eye contact indicates that I am engaged in the conversation and listening to someone. Standing up straight expresses to people that I am confident
+    and know what I'm doing.
+
+11. Describe some examples of effective word choice and what is communicated when they are used well.
+
+    To speak effectively I should not use excessive slang or profanity. I should also be considerate of whom I'm speaking to by communicating in their preferred style and also in a manner that would not be offensive to them.
+
+12. How can you build trust in a team?
+
+    By being honest and doing what I say I will do when I say I will do it. By being kind and generous with my time and caring about their wellbeing.
+
+13. How are the devices on the internet physically connected to each other?
+
+    Through a system of routers and servers emitting frequencies of binary code. 
+
+14. How is information physically transmitted from device to device?
+
+    Through the deliverance of binary code using electronic pulses, light via fibre optic cables, or radiofrequency.
+
+15. How does one device find another it’s trying to communicate with?
+
+    With its IP address that is identified through the DNS and is transmitted through multiple routers until it identified a path to that address. 
+
+16. What methods do devices on the internet use to communicate?
+
+    Through the transference of packets that hold information and is transmitted through routers that act as traffic managers.
+
+17. How can we send data reliably even if the network is unreliable?
+
+    Every router keeps track of multiple paths for sending packets. It’s this open option of paths that makes the internet fault tolerant in case something goes wrong. The TCP system guarantees that the packet is complete upon delivery and if not no part of the packet will be transmitted.
+
