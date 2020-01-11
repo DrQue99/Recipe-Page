@@ -76,3 +76,4 @@
 
     Every router keeps track of multiple paths for sending packets. It’s this open option of paths that makes the internet fault tolerant in case something goes wrong. The TCP system guarantees that the packet is complete upon delivery and if not no part of the packet will be transmitted.
 
+I finished!
