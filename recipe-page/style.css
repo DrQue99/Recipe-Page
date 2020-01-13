@@ -1,8 +1,25 @@
+
+.top {
+    text-align: center;
+    font-family: cursive;
+    font-weight: bold;
+}
+
+.list {
+    font-weight: lighter;
+    font-family: fantasy;
+    font-size: 14px;
+}
+img {
+    text-align: left;
+}
+
 body {
-    background-color: bisque;
+    background-color: rgb(255, 196, 226);
 }
 
 p {
-    color: pink; 
+    color: rgb(223, 85, 140); 
+    font-family: fantasy;
 }
 
