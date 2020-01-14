@@ -10,6 +10,10 @@
     font-size: 14px;
     display: inline-block;
     width: 46%;
+    border-color: rgb(223, 85, 140);
+    border-width:1px;
+    border-style: solid;
+    border-radius: 5%;
     
 }
 image {
