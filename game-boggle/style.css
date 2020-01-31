@@ -1,0 +1,91 @@
+
+
+html, body {
+	height: 100%;
+	margin:0;
+  	padding:0;
+	font-family: 'Girassol', cursive;
+    background-color: rgb(201, 198, 98)
+}
+#main {
+	width: 800px;
+	margin: auto;
+	text-align: center;
+	position: relative;
+}
+#panel{
+	display: table;
+	width: 600px;
+	margin: auto;
+	margin-bottom: 40px;
+}
+
+header{
+	text-align: center;
+	padding: 10px;
+}
+
+footer{
+	text-align: center;
+	padding: 20px 0;
+}
+
+#bottom {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    margin: 6px;
+	background-color: rgb(160, 142, 245);
+	border: 5px solid rgb(17, 14, 2);
+}
+
+
+.reshuffle, .submit, .startTimer {
+	padding: 5px 20px; 
+	display:block; 
+	margin: 0 0 15px 0;
+	font-size: 16px;
+	width: 200px;
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+}
+
+.dice{
+	width: 50px;
+    height: 50px;
+}
+
+#game-board {
+	
+	border: 5px solid rgb(17, 14, 2);
+	background-color: rgb(135, 8, 103);
+	padding: 5px; 
+	margin: 10px auto 10px auto;
+	flex-wrap: wrap;  
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+#row0 {
+	/* display: flex;  */
+
+}
+#row1 {
+	/* display: flex; */
+}
+#row2 {
+	/* display: flex; */
+}
+#row3 {
+	/* display: flex; */
+}
