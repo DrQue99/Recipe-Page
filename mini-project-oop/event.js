@@ -90,4 +90,4 @@ console.log(event3)
 // console.log(eventObj2.allTickets());
 // console.log(eventObj3.allTickets());
 
-console.log(`Ticket search: ${event3.searchTickets() }`)
+console.log(`Ticket search: ${event3.searchTickets(0, 200) }`)
