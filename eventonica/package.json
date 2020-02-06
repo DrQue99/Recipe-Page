@@ -1,0 +1,26 @@
+{
+  "name": "eventonica",
+  "version": "1.0.0",
+  "description": "Event recommender for Techtonica testing unit",
+  "main": "app.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "spec_dir": "spec",
+  "spec_files": [
+    "**/*[sS]pec.js",
+    "!**/*nospec.js"
+  ],
+  "keywords": [
+    "events",
+    "eventonica",
+    "techtonica",
+    "tests",
+    "OOP"
+  ],
+  "author": "Dr. Q",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
