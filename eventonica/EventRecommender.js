@@ -24,12 +24,17 @@ class EventRecommender {
     );
   }
 
-  addUserByName(lastName, firstName) {
-    return addUser(new User(lastName, firstName));
-  }
-
   addUser(userObj) {
     return this.users.push(userObj);
+  }
+
+  addUserByName(firstName, lastName) {
+    // does not recognize addUser in this function call.
+    return addUser(new User(firstName, lastName));
+  }
+
+  allUsers() {
+    return this.users;
   }
 
   saveUserEvent() {
@@ -100,6 +105,7 @@ class Event {
   }
 }
 
+//Debugging and test code:
 const eventRecommenderApp = new EventRecommender();
 const event1 = new Event(
   "Music",
@@ -110,14 +116,18 @@ const event1 = new Event(
   "eight 0'clock"
 );
 console.log(event1);
-
-const user1 = new User("Marlan", "Manson");
+//eventRecommenderApp.addUserByName("Marlan", "Manson");
 const user2 = new User("Princess", "Peach");
+eventRecommenderApp.addUser(user2);
 
-console.log(user1.name);
-console.log(user1);
+//console.log(user1.name);
+console.log(eventRecommenderApp.allUsers());
 
-eventRecommenderApp.addUser("Peaches", "Christ");
-console.log(eventRecommenderApp);
+console.log(eventRecommenderApp.findEventsByDate("Jan 02, 2020"));
 
-module.exports = EventRecommender;
+eventRecommenderApp.addUserByName("Peaches", "Christ");
+//console.log(eventRecommenderApp);
+
+if (typeof module != "undefined") {
+  module.exports = { EventRecommender, User, Event };
+}

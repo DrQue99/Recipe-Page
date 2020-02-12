@@ -1,60 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Girassol&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
+<html>
+<head>
+    <script src="EventRecommender.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="jQuery-scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Girassol&display=swap" rel="stylesheet">
 
-    <title>Event Recommender</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href = "style.css">
+
+</head>
+
+<body>
+    <h1>Event Recommender</h1>
+
+    <h2>User Management</h2>
     <div>
-      <h1>Event Recommender</h1>
+        <h3>All Users</h3>
+        <ul id="all-users">
+
+        </ul>
+
+        <h3>Add User</h3>
+        <form id="add-user">
+            <label>User ID:</label>
+            <input type="text" id="add-user-id">
+            <br/>
+            <label>User name:</label>
+            <input type="text" id="add-user-name">
+            <br/>
+
+            <input type="submit">
+        </form>
     </div>
+
     <div>
-      <div>
-        <h2>Upcoming Events:</h2>
-      </div>
-      <div>
-        <h2>Search for event by:</h2>
-      </div>
-      <div class="searchResults">
-        <ul></ul>
-      </div>
-      <div>
-        <h2>Add or delete an event:</h2>
-      </div>
+        <h3>Delete User</h3>
+        <form id="delete-user">
+            <label>User ID:</label>
+            <input type="text" id="delete-user-id">
+            <br/>
+            <input type="submit">
+        </form>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      src = "EventRecommender.js";
-    </script>
-  </body>
+
+    <br/>
+
+    <h2>Event Management</h2>
+    <div>
+        <h3>All Events</h3>
+        <ul>
+
+        </ul>
+
+        <h3>Add Event</h3>
+        <form id="add-event">
+            <label>Event ID:</label>
+            <input type="text" id="add-event-id">
+            <br/>
+            <label>Event name:</label>
+            <input type="text" id="add-event-name">
+            <br/>
+
+            <input type="submit">
+        </form>
+    </div>
+
+    <div>
+        <h3>Delete Event</h3>
+        <form id="delete-event">
+            <label>Event ID:</label>
+            <input type="text" id="delete-event-id">
+            <br/>
+            <input type="submit">
+        </form>
+    </div>
+
+</div>
+
+<br/>
+
+<h2>Event Search and Save</h2>
+<div>
+    <h3>Find Events by Date</h3>
+    <form id="date-search">
+        <label>Event date:</label>
+        <input type="text" id="date-search-id">
+        <br/>
+        <input type="submit">
+    </form>
+    <h4>Results:</h4>
+    <ol>
+
+    </ol>
+</div>
+
+<div>
+    <h3>Find Events by Category</h3>
+    <form id="category-search">
+        <label>Event category:</label>
+        <input type="text" id="category-search-id">
+        <br/>
+        <input type="submit">
+    </form>
+    <h4>Results:</h4>
+    <ol>
+
+    </ol>
+</div>
+
+<div>
+    <h3>Save Event for User</h3>
+    <form id="save-user-event">
+        <label>User ID:</label>
+        <input type="text" id="save-user-id">
+        <br/>
+        <label>Event ID:</label>
+        <input type="text" id="save-event-id">
+        <br/>
+        <input type="submit">
+    </form>
+</div>
+
+</body>
+
 </html>
