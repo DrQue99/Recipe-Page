@@ -25,7 +25,7 @@ class EventRecommender {
   }
 
   addUserByName(lastName, firstName) {
-    return addUser(new User(lastName, firstName));
+    return this.addUser(new User(lastName, firstName));
   }
 
   addUser(userObj) {
