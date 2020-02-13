@@ -1,13 +1,7 @@
-if (!moment) {
-  var moment = require("moment");
-  moment().format();
-}
-
 class EventRecommender {
   constructor() {
     this.events = [];
     this.users = [];
-    this.savedEvents = [];
   }
   addEvent(
     eventCategory,
@@ -44,13 +38,15 @@ class EventRecommender {
     return this.users;
   }
 
-  saveUserEvent(userName) {
-    let usersEvents = [];
+  saveUserEvent(userName, eventID) {
+    let index = this.users.findIndex(element => element.name === userName);
+    console.log(index);
+
+    let eventObj = this.events.find(element => element.eventID === eventID);
+    console.log(eventObj);
     // Allow users to save events to a personal Events array.
-    for (let i = 0; i < this.events.length; i++) {
-      usersEvents.push(events[i]);
-    }
-    return usersEvents;
+    this.users[index].userEvents.push(eventObj);
+    console.log(this.users);
   }
 
   deleteUser(userID) {
@@ -92,7 +88,8 @@ class EventRecommender {
 class User {
   constructor(firstName, lastName, userID) {
     this.name = firstName + " " + lastName;
-    this.UserId = userID;
+    this.userId = userID;
+    this.userEvents = [];
   }
 
   getUserID() {
@@ -101,7 +98,14 @@ class User {
 }
 
 class Event {
-  constructor(eventCategory, eventName, location, ticketPrice, eventDate) {
+  constructor(
+    eventCategory,
+    eventName,
+    location,
+    ticketPrice,
+    eventID,
+    eventDate
+  ) {
     this.eventCategory = eventCategory;
     this.eventName = eventName;
     this.location = location;
@@ -120,6 +124,11 @@ class Event {
 //console.log(eventRecommenderApp.findEventsByDate("Jan 02, 2020"));
 
 //console.log(eventRecommenderApp);
+
+// if (!moment) {
+//   var moment = require("moment");
+//   moment().format();
+// }
 
 if (typeof module != "undefined") {
   module.exports = { EventRecommender, User, Event };

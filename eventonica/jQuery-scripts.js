@@ -1,5 +1,6 @@
+const eventRecommenderApp = new EventRecommender();
+
 $(document).ready(() => {
-  const eventRecommenderApp = new EventRecommender();
   //eventRecommenderApp.allUsers();
   eventRecommenderApp.addUserByName("Peaches", "Christ", 12345);
   eventRecommenderApp.addUserByName("Marlan", "Manson", 06667);
@@ -8,17 +9,21 @@ $(document).ready(() => {
     "Country Stars",
     "The Met",
     "$199",
-    "Jan 02, 2020",
-    "eight 0'clock"
+    12314,
+    "Jan 02, 2020"
   );
   //eventRecommenderApp.allUsers();
+  eventRecommenderApp.saveUserEvent("Marlan Manson", 12314);
+  displayUsers();
 });
 
 function displayUsers() {
   let displayedUser = "";
-  for (let user of eventRecommenderApp.users)
-    displayedUser += `<li>${user.userName}</li>`;
-
+  console.log(eventRecommenderApp.users);
+  for (let user of eventRecommenderApp.users) {
+    displayedUser += `<li>${user.name}</li>`;
+  }
+  console.log(displayedUser);
   $("#all-users").html(displayedUser);
 }
 
@@ -31,4 +36,4 @@ for (let event of eventRecommenderApp.events) {
   eventRecommenderEvents.push(event);
 }
 
-displayUsers();
+console.log(eventRecommenderApp.users);
