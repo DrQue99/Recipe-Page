@@ -1,8 +1,13 @@
+if (!moment) {
+  var moment = require("moment");
+  moment().format();
+}
+
 class EventRecommender {
   constructor() {
     this.events = [];
     this.users = [];
-    this._savedEvents = [];
+    this.savedEvents = [];
   }
   addEvent(
     eventCategory,
@@ -10,6 +15,7 @@ class EventRecommender {
     location,
     ticketPrice,
     eventDate,
+    eventID,
     eventTime
   ) {
     return this.events.push(
@@ -19,6 +25,7 @@ class EventRecommender {
         location,
         ticketPrice,
         eventDate,
+        eventID,
         eventTime
       )
     );
@@ -28,16 +35,16 @@ class EventRecommender {
     return this.users.push(userObj);
   }
 
-  addUserByName(firstName, lastName) {
+  addUserByName(firstName, lastName, userID) {
     // does not recognize addUser in this function call.
-    return addUser(new User(firstName, lastName));
+    return this.addUser(new User(firstName, lastName, userID));
   }
 
   allUsers() {
     return this.users;
   }
 
-  saveUserEvent() {
+  saveUserEvent(userName) {
     let usersEvents = [];
     // Allow users to save events to a personal Events array.
     for (let i = 0; i < this.events.length; i++) {
@@ -46,14 +53,14 @@ class EventRecommender {
     return usersEvents;
   }
 
-  deleteUser(user) {
+  deleteUser(userID) {
     // Deletes a User from the system
     let i = this.users.indexOf(user);
     this.users = this.users.split(i, 1);
     return user;
   }
 
-  deleteEvent(event) {
+  deleteEvent(eventID) {
     // Deletes the Event from the system
     let i = indexOf(event);
     this.events = this.events.split(i, 1);
@@ -66,8 +73,8 @@ class EventRecommender {
 
   findEventsByDate(date) {
     let eventsByDate = [];
-    for (let i = 0; i < this.events.length; i++) {
-      if (this.events[i]._eventDate == date) {
+    for (let event of this.events) {
+      if (this.events[i].eventDate == date) {
         eventsByDate = eventsByDate.push(this.events[i]);
       }
     }
@@ -79,53 +86,39 @@ class EventRecommender {
     return events.filter(event => {
       return event._eventCategory.toLowerCase() === category.toLowerCase();
     });
-
-    // let eventsByCategory = [];
-    // for (let i = 0; i < this.events.length; i++) {
-    //     if(this._eventCategory == category)
-    //         eventsByCategory = eventsByCategory.push(events[i])
-    // }
-    // return eventsByCategory;
   }
 }
 
 class User {
-  constructor(firstName, lastName) {
+  constructor(firstName, lastName, userID) {
     this.name = firstName + " " + lastName;
+    this.UserId = userID;
+  }
+
+  getUserID() {
+    return this.userID;
   }
 }
 
 class Event {
   constructor(eventCategory, eventName, location, ticketPrice, eventDate) {
-    this._eventCategory = eventCategory;
-    this._eventName = eventName;
-    this._location = location;
-    this._ticketPrice = ticketPrice;
-    this._eventDate = Date.parse(eventDate); //i.e. "March 21, 2020"
+    this.eventCategory = eventCategory;
+    this.eventName = eventName;
+    this.location = location;
+    this.ticketPrice = ticketPrice;
+    this.eventID = eventID;
+    this.eventDate = eventDate; //i.e. "March 21, 2020"
+  }
+  getFormattedDate() {
+    return moment(this.eventDate).format("MMM DD YYYY");
   }
 }
 
 //Debugging and test code:
-const eventRecommenderApp = new EventRecommender();
-const event1 = new Event(
-  "Music",
-  "Country Stars",
-  "The Met",
-  "$199",
-  "Jan 02, 2020",
-  "eight 0'clock"
-);
-console.log(event1);
-//eventRecommenderApp.addUserByName("Marlan", "Manson");
-const user2 = new User("Princess", "Peach");
-eventRecommenderApp.addUser(user2);
+//const eventRecommenderApp = new EventRecommender();
 
-//console.log(user1.name);
-console.log(eventRecommenderApp.allUsers());
+//console.log(eventRecommenderApp.findEventsByDate("Jan 02, 2020"));
 
-console.log(eventRecommenderApp.findEventsByDate("Jan 02, 2020"));
-
-eventRecommenderApp.addUserByName("Peaches", "Christ");
 //console.log(eventRecommenderApp);
 
 if (typeof module != "undefined") {
