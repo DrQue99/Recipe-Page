@@ -33,20 +33,34 @@ $("#display-ticket-master-event").each(function(index, element ) {
       event.preventDefault();
       let keyword = $("#ticket-master-search-id").val();
    
-
   $.ajax({
     type:"GET",
     url:`https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${keyword}`,
     async:true,
     dataType: "json",
     success: function(json) {
-      let events = json._embedded.events
-      //console.log(events[0].name);
+      let events = json._embedded.events;
+      let eventName = events[0].name;
+      let location = events[0]._embedded.venues[0].name;
+      let eventCategory = events[0].classifications[0].segment.name;
+      let ticketPrice = events[0].sales;
+      let eventDate = events[0].dates.start.localDate;
+      let eventID = events[0].id;
+      let eventTime = events[0].dates.start.localTime;
+      console.log(events[0]);
               
-              $("#display-ticket-master-event").html(events[0].name);
+              $("#display-ticket-master-event").html(eventName);
               // Parse the response.
-
-              // Do other things.
+              eventRecommenderApp.addEvent(
+                eventCategory,
+                eventName,
+                location,
+                ticketPrice,
+                eventDate,
+                eventID,
+                eventTime
+              );
+              displayEvents();
             },
     error: function(xhr, status, err) {
               // This time, we do not end up here!
@@ -54,7 +68,7 @@ $("#display-ticket-master-event").each(function(index, element ) {
 
 })
 });
- });
+});
 });
 
 function displayUsers() {
@@ -69,7 +83,7 @@ function displayUsers() {
 function displayEvents() {
   let displayedEvents = "";
   for (let event of eventRecommenderApp.events) {
-    displayedEvents += `<li>${event.eventName} | ${event.location}</li>`;
+    displayedEvents += `<li>${event.eventName} | Venue:  ${event.location} | ${event.eventDate}</li>`;
   }
   $("#all-events").html(displayedEvents);
 }
