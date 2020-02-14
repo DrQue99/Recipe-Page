@@ -42,7 +42,7 @@ class EventRecommender {
     let index = this.users.findIndex(element => element.name === userName);
     console.log(index);
 
-    let eventObj = this.events.find(element => element.eventID === eventID);
+    let eventObj = this.events.find(element => element.eventID == eventID);
     console.log(eventObj);
     // Allow users to save events to a personal Events array.
     this.users[index].userEvents.push(eventObj);
