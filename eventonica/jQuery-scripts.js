@@ -10,8 +10,9 @@ $(document).ready(() => {
     "Country Stars",
     "The Met",
     "$199",
+    "Jan 02, 2020",
     12314,
-    "Jan 02, 2020"
+    "8:30"
   );
 
   eventRecommenderApp.saveUserEvent("Marlan Manson", 12314);
@@ -40,28 +41,29 @@ $("#display-ticket-master-event").each(function(index, element ) {
     dataType: "json",
     success: function(json) {
       let events = json._embedded.events;
+      let eventCategory = events[0].classifications[0].segment.name;
       let eventName = events[0].name;
       let location = events[0]._embedded.venues[0].name;
-      let eventCategory = events[0].classifications[0].segment.name;
       let ticketPrice = events[0].sales;
       let eventDate = events[0].dates.start.localDate;
-      let eventID = events[0].id;
+      let eventID = events.id;
       let eventTime = events[0].dates.start.localTime;
       console.log(events[0]);
-              
-              $("#display-ticket-master-event").html(eventName);
-              // Parse the response.
-              eventRecommenderApp.addEvent(
-                eventCategory,
-                eventName,
-                location,
-                ticketPrice,
-                eventDate,
-                eventID,
-                eventTime
-              );
-              displayEvents();
-            },
+      
+      $("#display-ticket-master-event").html(eventName);
+      // Parse the response.
+      eventRecommenderApp.addEvent(
+        eventCategory,
+        eventName,
+        location,
+        ticketPrice,
+        eventDate,
+        eventID,
+        eventTime
+        );
+        // console.log("Inside the success: ", );
+        displayEvents();
+      },
     error: function(xhr, status, err) {
               // This time, we do not end up here!
             }
@@ -86,6 +88,7 @@ function displayEvents() {
     displayedEvents += `<li>${event.eventName} | Venue:  ${event.location} | ${event.eventDate}</li>`;
   }
   $("#all-events").html(displayedEvents);
+  console.log("After events are added: ", displayedEvents);
 }
 
 // const eventRecommenderAppUsers = [];

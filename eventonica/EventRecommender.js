@@ -100,18 +100,20 @@ class User {
 class Event {
   constructor(
     eventCategory,
-    eventName,
-    location,
-    ticketPrice,
-    eventID,
-    eventDate
+        eventName,
+        location,
+        ticketPrice,
+        eventDate,
+        eventID,
+        eventTime
   ) {
     this.eventCategory = eventCategory;
     this.eventName = eventName;
     this.location = location;
     this.ticketPrice = ticketPrice;
     this.eventID = eventID;
-    this.eventDate = eventDate; //i.e. "March 21, 2020"
+    this.eventDate = eventDate; //i.e. "March 21, 2020";
+    this.eventTime = eventTime;
   }
   getFormattedDate() {
     return moment(this.eventDate).format("MMM DD YYYY");
