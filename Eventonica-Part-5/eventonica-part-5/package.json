@@ -1,0 +1,23 @@
+{
+  "name": "eventonica-part-5",
+  "version": "1.0.0",
+  "description": "dev-tools-02-21-20",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "jasmine": "^3.5.0",
+    "joi": "^14.3.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
