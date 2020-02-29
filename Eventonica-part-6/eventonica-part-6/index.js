@@ -7,6 +7,7 @@ const pgp = require('pg-promise')();
 const db = pgp('postgres://tpl1219_7@localhost:5432/eventonica');
 const er = new EventRecommender;
 const express = require('express');
+const curl = require('curl');
 const app = express();
 
 const Joi = require('joi');
@@ -82,26 +83,20 @@ app.get('/api/er/users/:id', (req, res) => {
 app.get('/api/er/search/:keyword', (req, res) => {
     let keyword = req.params.keyword;
 
-    jquery.ajax({
-        type:"GET",
-        url:`https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${keyword}`,
-        async:true,
-        dataType: "json",
-        success: function(json) {
+    // curl.get(url, options, function(err, response, body) {});
+    curl.get(`https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${keyword}`,
+        {},
+        function(err, response, body) {
+            /*
           let events = json._embedded.events;
           let category = events[0].classifications[0].segment.name;
           let event_name = events[0].name;
           let location = events[0]._embedded.venues[0].name;
           let date = events[0].dates.start.localDate;
-         
-          res.send( events );
-        },
-        error: function(xhr, status, err) {
-            // This time, we do not end up here!
-            res.send("server error")
+            */
+          res.send( body );
         }
-    
-    })
+    );
 });
 
 //add event to events from body
