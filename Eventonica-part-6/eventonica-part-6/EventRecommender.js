@@ -26,9 +26,9 @@ class EventRecommender {
     return this.users.push(userObj);
   }
 
-  addUserByName(firstName, lastName, userID) {
+  addUserByName(name) {
     // does not recognize addUser in this function call.
-    return this.addUser(new User(firstName, lastName, userID));
+    return this.addUser(new User(name));
   }
 
   allUsers() {
@@ -83,9 +83,9 @@ class EventRecommender {
 }
 
 class User {
-  constructor(firstName, lastName, userID) {
-    this.name = firstName + " " + lastName;
-    this.userId = userID;
+  constructor(name) {
+    this.name = name;
+    this.userId = Math.floor(Math.random()*90000) + 10000;
     this.userEvents = [];
   }
 
