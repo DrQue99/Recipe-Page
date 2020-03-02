@@ -220,7 +220,7 @@ app.put('/api/users', (req, res) => {
     res.send(user);
 });
 
-//delete an event from db
+//delete an event from DB
 app.delete('/api/events', (req, res) => {
     db.result(`DELETE FROM events WHERE event_id = $1;`, [req.body.event_id])
         .then(result => {
@@ -231,7 +231,7 @@ app.delete('/api/events', (req, res) => {
     });
 });
 
-//delete user from db
+//delete user from DB
 app.delete('/api/users', (req, res) => {
     db.result(`DELETE FROM users WHERE id = $1;`, [req.body.id])
         .then(result => {
