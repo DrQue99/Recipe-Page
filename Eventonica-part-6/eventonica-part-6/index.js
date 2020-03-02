@@ -1,7 +1,9 @@
 //import { EventRecommender } from '/EventRecommender.js'
 // const {EventRecommender, User, Event} = require("./EventRecommender")
 // const er = new EventRecommender;
-
+//.env dem:
+const I_LOVE = require('./config');
+console.log("I LOVE", I_LOVE);
 
 const PORT = process.env.PORT || 3000;
 const pgp = require('pg-promise')();
