@@ -11,10 +11,6 @@ describe("SAMPLE unit test",function(){
 
   // #1 should return home page
 
-
-    
-
-
     it("Should get events", () => { 
     //calling ADD api
     server
@@ -23,7 +19,7 @@ describe("SAMPLE unit test",function(){
     .expect('Content-type', 'application/json; charset=utf-8')
 
     });
-s
+
     //test to add event
 
     it("Should respond with error message", () => {
@@ -37,13 +33,12 @@ s
     it("Should add event to events", () => {
         server
         .post('/api/events')
-        .send({"category": "Music",
-                "name": "Country Starts",
-                "location": "The Met",
-                "date": "Jan 02, 2020",
-                "id" : 12345})
+        .send({
+            "event_name": "World Blockchain Hackathon",
+            "location": "San Francisco, CA",
+            "category": "Hackathon",
+            "date": "02/29/2020"})
         .expect(200)
-        .expect()
-    })
 
+    });
 });

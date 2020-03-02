@@ -6,19 +6,13 @@
 const PORT = process.env.PORT || 3000;
 const pgp = require('pg-promise')();
 const db = pgp('postgres://tpl1219_7@localhost:5432/eventonica');
-
 const express = require('express');
 const curl = require('curl');
 const app = express();
-
 const Joi = require('joi');
-//handlebars middleware
-const exphbs  = require('express-handlebars');
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
 const morgan = require('morgan');
-//const moment = require('moment');
 app.use(morgan());
+//const moment = require('moment');
 const path = require('path');
 //body parser middleware
 app.use(express.json());
@@ -68,12 +62,12 @@ app.get('/api/events', (req, res) => {
 app.get('/api/users', (req, res) => {
 
     db.any('SELECT * FROM users', [true])
-    .then(function(data) {
-        res.send(data)
-    })
-    .catch(function(error) {
-        res.send(error)
-    });
+        .then(function(data) {
+            res.send(data)
+        })
+        .catch(function(error) {
+            res.send(error)
+        });
 });
 
 //search events/users by id
@@ -82,7 +76,7 @@ app.get('/api/events/search', (req, res) => {
     db.result(`SELECT * FROM events WHERE event_id = $1;`, [req.body.event_id])
         .then(data => {
             res.send(data.rows[0])
-            })
+        })
         .catch(function(error) {
             res.sendStatus(500)
     });
@@ -91,12 +85,12 @@ app.get('/api/events/search', (req, res) => {
 app.get('/api/users/search', (req, res) => {
 
     db.result(`SELECT * FROM users WHERE id = $1;`, [req.body.id])
-    .then(data => {
-        res.send(data.rows[0])
+        .then(data => {
+            res.send(data.rows[0])
         })
-    .catch(function(error) {
-        res.sendStatus(500)
-});
+        .catch(function(error) {
+            res.sendStatus(500)
+    });
        
 });
 
@@ -109,7 +103,7 @@ app.get('/api/ticketmaster/search/:keyword', (req, res) => {
         {},
         function(err, response, body) {
 
-            //still need to parse search results to display appropriately in UI, but search results will display in postman.
+            //still need to parse search results to display appropriately in UI, but search results will still display in postman.
             /*
           let events = json._embedded.events;
           let category = events[0].classifications[0].segment.name;
@@ -133,15 +127,14 @@ app.post('/api/events', (req, res) => {
         event_name: req.body.event_name,
         location: req.body.location,
         date: req.body.date
-};
+    };
+    
     db.one('INSERT INTO events (event_name, location, category, date) values ($1, $2, $3, $4) RETURNING *', [event.event_name, event.location, event.category, event.date])
-    .then(data => {
-        console.log("db insert success!")
-        res.send(data)
-    })
-    .catch(function(error) {
-        res.sendStatus(500)
-        console.log(`db insert error ${error}`)
+        .then(data => {
+            res.send(data)
+        })
+        .catch(function(error) {
+            res.sendStatus(500)
     });
 });
 
@@ -155,28 +148,39 @@ app.post('/api/users', (req, res) => {
         name: req.body.name,
         events: req.body.events
     };
+
     db.one('INSERT INTO users (name) values ($1) RETURNING id, name', [user.name])
-    .then(data => {
-        console.log("db insert success!")
-        res.send(data)
-    })
-    .catch(function(error) {
-        res.sendStatus(500)
-        console.log(`db insert error ${error}`)
+        .then(data => {
+            res.send(data)
+        })
+        .catch(function(error) {
+            res.sendStatus(500)
     });
 
 });
 
 //add event to user object by id
 
-app.put('api/users/events', (req, res) => {
+app.post('api/users/events', (req, res) => {
 
+    const user_event = {
+        id: req.body.id,
+        event_id: req.body.event_id
+    };
+
+    db.result('INSERT INTO user_events (id, event_id) values ($1, $2) RETURNING *', [user_event.id, user_event.event_id])
+        .then(data => {
+            res.send(data)
+            console.log('What is happending here')
+        })
+        .catch(function(error) {
+            res.sendStatus(500)
+    });
     //sql command: INSERT INTO user_events VALUES (id, event_id)
-    // const event = events.find(e => e.id === parseInt(req.params.id));
-    // if (!event) res.status(404).send('The event with the given ID was not found.');
+
 });
 
-//update an existing event
+//update an existing event NOTE: This function is not yet compatible with eventonica DB.
 app.put('/api/events', (req, res) => {
 
     //find event by id
