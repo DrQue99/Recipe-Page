@@ -1,11 +1,12 @@
 //import { EventRecommender } from '/EventRecommender.js'
-const {EventRecommender, User, Event} = require("./EventRecommender")
+// const {EventRecommender, User, Event} = require("./EventRecommender")
+// const er = new EventRecommender;
+
+
 const PORT = process.env.PORT || 3000;
 const pgp = require('pg-promise')();
-
-
 const db = pgp('postgres://tpl1219_7@localhost:5432/eventonica');
-const er = new EventRecommender;
+
 const express = require('express');
 const curl = require('curl');
 const app = express();
@@ -28,13 +29,10 @@ app.get('/', (req, res) => res.render('index', {
     title: 'Event Recommender'
 }));
 
-const events = er.allEvents();
-const users = er.allUsers();
-
 //static files html and css
 app.use(express.static(path.join(__dirname, 'public')));
 
-//validate input
+//validate events input
 function validateInputEvents(event) {
     const schema = {
         category: Joi.string().min(3).required(),
@@ -45,7 +43,7 @@ function validateInputEvents(event) {
     };
     return Joi.validate(event, schema);
 };
-
+//validate users input
 function validateInputUsers(user) {
     const schema = {
         name: Joi.string().min(3).required()
@@ -55,38 +53,63 @@ function validateInputUsers(user) {
 
 
 //display all events/users
+app.get('/api/events', (req, res) => {
 
-app.get('/api/er', (req, res) => {
-    res.send(events);
+    db.any('SELECT * FROM events', [true])
+    .then(function(data) {
+        res.send(data)
+    })
+    .catch(function(error) {
+        res.send(error)
+    });
+
 });
 
-app.get('/api/er/users', (req, res) => {
-    res.send(users);
+app.get('/api/users', (req, res) => {
+
+    db.any('SELECT * FROM users', [true])
+    .then(function(data) {
+        res.send(data)
+    })
+    .catch(function(error) {
+        res.send(error)
+    });
 });
 
-//get events/users by id
+//search events/users by id
+app.get('/api/events/search', (req, res) => {
 
-app.get('/api/er/id', (req, res) => {
-    const event = events.find(e => e.id === parseInt(req.params.id));
-    if (!event) return res.status(404).send('The event with the given ID was not found.');
-    res.send(event);
+    db.result(`SELECT * FROM events WHERE event_id = $1;`, [req.body.event_id])
+        .then(data => {
+            res.send(data.rows[0])
+            })
+        .catch(function(error) {
+            res.sendStatus(500)
+    });
 });
 
-app.get('/api/er/users/:id', (req, res) => {
-    const user = users.find(u => u.id === parseInt(req.params.id)); 
-    if(!user) return res.status(404).send('The user with the given ID was not found.');;
-    res.send(user);
+app.get('/api/users/search', (req, res) => {
+
+    db.result(`SELECT * FROM users WHERE id = $1;`, [req.body.id])
+    .then(data => {
+        res.send(data.rows[0])
+        })
+    .catch(function(error) {
+        res.sendStatus(500)
+});
+       
 });
 
-// get event by keyword
-
-app.get('/api/er/search/:keyword', (req, res) => {
+// search for event by keyword from ticketmaster api
+app.get('/api/ticketmaster/search/:keyword', (req, res) => {
     let keyword = req.params.keyword;
 
     // curl.get(url, options, function(err, response, body) {});
     curl.get(`https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${keyword}`,
         {},
         function(err, response, body) {
+
+            //still need to parse search results to display appropriately in UI, but search results will display in postman.
             /*
           let events = json._embedded.events;
           let category = events[0].classifications[0].segment.name;
@@ -99,7 +122,7 @@ app.get('/api/er/search/:keyword', (req, res) => {
     );
 });
 
-//add event to events from body
+//add event to events table in db from body
 app.post('/api/events', (req, res) => {
     //validate input with function
     const {error} = validateInputEvents(req.body);
@@ -122,8 +145,8 @@ app.post('/api/events', (req, res) => {
     });
 });
 
-//add a user to users array from body
-app.post('/api/er/users', (req, res) => {
+//add a user to users table in db from body
+app.post('/api/users', (req, res) => {
     //validate input with function
     const {error} = validateInputUsers(req.body);
     if(error) return res.status(400).send(error.details[0].message);
@@ -132,7 +155,7 @@ app.post('/api/er/users', (req, res) => {
         name: req.body.name,
         events: req.body.events
     };
-    db.one('INSERT INTO users (name) values ($1) RETURNING userid, name', [user.name])
+    db.one('INSERT INTO users (name) values ($1) RETURNING id, name', [user.name])
     .then(data => {
         console.log("db insert success!")
         res.send(data)
@@ -146,15 +169,15 @@ app.post('/api/er/users', (req, res) => {
 
 //add event to user object by id
 
-// app.put('api/users/:id', (req, res) => {
+app.put('api/users/events', (req, res) => {
 
-
-//     const event = events.find(e => e.id === parseInt(req.params.id));
-//     if (!event) res.status(404).send('The event with the given ID was not found.');
-// });
+    //sql command: INSERT INTO user_events VALUES (id, event_id)
+    // const event = events.find(e => e.id === parseInt(req.params.id));
+    // if (!event) res.status(404).send('The event with the given ID was not found.');
+});
 
 //update an existing event
-app.put('/api/er/:id', (req, res) => {
+app.put('/api/events', (req, res) => {
 
     //find event by id
     const event = events.find(e => e.id === parseInt(req.params.id));
@@ -174,8 +197,8 @@ app.put('/api/er/:id', (req, res) => {
     res.send(event);
 });
 
-//update an existing user
-app.put('/api/er/users/:id', (req, res) => {
+//update an existing user: NOTE: This function is not yet compatible with eventonica DB.
+app.put('/api/users', (req, res) => {
 
     //find user by id
     const user = users.find(e => e.id === parseInt(req.params.id));
@@ -193,7 +216,7 @@ app.put('/api/er/users/:id', (req, res) => {
     res.send(user);
 });
 
-//delete event
+//delete an event from db
 app.delete('/api/events', (req, res) => {
     db.result(`DELETE FROM events WHERE event_id = $1;`, [req.body.event_id])
         .then(result => {
@@ -204,8 +227,8 @@ app.delete('/api/events', (req, res) => {
     });
 });
 
-//delete user
-app.delete('/api/er/users', (req, res) => {
+//delete user from db
+app.delete('/api/users', (req, res) => {
     db.result(`DELETE FROM users WHERE id = $1;`, [req.body.id])
         .then(result => {
             res.send(result)
