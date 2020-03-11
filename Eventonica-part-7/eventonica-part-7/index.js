@@ -12,7 +12,6 @@ const path = require("path");
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//console.log(this is nothing)
 
 //homepage route
 app.get("/", (req, res) =>
