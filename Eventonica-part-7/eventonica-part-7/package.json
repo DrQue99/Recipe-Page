@@ -1,0 +1,22 @@
+{
+  "name": "eventonica-part-7",
+  "version": "1.0.0",
+  "description": "Welcome to my Eventonica App Part 7 React",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "morgan": "^1.9.1",
+    "pg-promise": "^10.4.4"
+  }
+}

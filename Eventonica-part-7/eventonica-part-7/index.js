@@ -1,8 +1,8 @@
 const PORT = process.env.PORT || 3000;
+const DB_NAME = process.env.DB_NAME || "eventonica";
 const pgp = require("pg-promise")();
-const db = pgp("postgres://tpl1219_7@localhost:5432/eventonica");
+const db = pgp(`postgres://localhost:5432/${DB_NAME}`);
 const express = require("express");
-const curl = require("curl");
 const app = express();
 const Joi = require("joi");
 const morgan = require("morgan");
@@ -68,7 +68,8 @@ app.get("/api/users", (req, res) => {
       res.send(data);
     })
     .catch(function(error) {
-      res.send(error);
+      console.error(error);
+      res.sendStatus(500);
     });
 });
 
@@ -91,28 +92,6 @@ app.get("/api/users/search", (req, res) => {
     .catch(function(error) {
       res.sendStatus(500);
     });
-});
-
-// search for event by keyword from ticketmaster api
-app.get("/api/ticketmaster/search/:keyword", (req, res) => {
-  let keyword = req.params.keyword;
-
-  // curl.get(url, options, function(err, response, body) {});
-  curl.get(
-    `https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${keyword}`,
-    {},
-    function(err, response, body) {
-      //still need to parse search results to display appropriately in UI, but search results will still display in postman.
-      /*
-          let events = json._embedded.events;
-          let category = events[0].classifications[0].segment.name;
-          let event_name = events[0].name;
-          let location = events[0]._embedded.venues[0].name;
-          let date = events[0].dates.start.localDate;
-            */
-      res.send(body);
-    }
-  );
 });
 
 //add event to events table in db from body
