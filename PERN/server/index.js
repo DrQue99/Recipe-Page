@@ -1,11 +1,24 @@
 const express = require("express");
 const app = express();
+const router = express.Router();
 const PORT = 3000;
 const pgp = require("pg-promise")();
 const db = pgp("postgres://tpl1219_7@localhost:5432/pern");
+const cors = require("cors");
+
+router.get("/”, function(req, res, next) {
+  res.send(“API is working properly”)
+});
+
+app.use("/testAPI", testAPIRouter);
+const testAPIRouter = require("./routes/testAPI");
+
+app.use(cors());
+
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 //display all species
 app.get("/api/species", (req, res) => {
@@ -94,4 +107,5 @@ app.post("/api/species", (req, res) => {
     });
 });
 
+module.exports = app;
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
