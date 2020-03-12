@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import "./App.css";
 
+import { Container, Row, Col } from "react-bootstrap";
+import addSightingForm from "./components/sightings-components/addSightingForm";
 class App extends Component {
   constructor(props) {
     super(props);
